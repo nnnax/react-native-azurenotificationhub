@@ -11,8 +11,8 @@
  */
 'use strict';
 
-import {NativeEventEmitter} from 'react-native';
-import {NativeModules} from 'react-native';
+import { NativeEventEmitter } from 'react-native';
+import { NativeModules } from 'react-native';
 
 const RCTAzureNotificationHubManager = NativeModules.AzureNotificationHubManager;
 const invariant = require('fbjs/lib/invariant');
@@ -216,13 +216,13 @@ class AzureNotificationHubIOS {
    */
   static addEventListener(type: PushNotificationEventName, handler: Function) {
     invariant(
-      type === 'notification' || type === 'register' || type === 'registrationError' || 
+      type === 'notification' || type === 'register' || type === 'registrationError' ||
       type === 'registerAzureNotificationHub' || type === 'azureNotificationHubRegistrationError' || type === 'localNotification',
       'AzureNotificationHubIOS only supports `notification`, `register`, `registrationError`, `registerAzureNotificationHub`, `azureNotificationHubRegistrationError` and `localNotification` events'
     );
     var listener;
     if (type === 'notification') {
-      listener =  PushNotificationEmitter.addListener(
+      listener = PushNotificationEmitter.addListener(
         DEVICE_NOTIF_EVENT,
         (notifData) => {
           handler(new AzureNotificationHubIOS(notifData));
@@ -273,7 +273,7 @@ class AzureNotificationHubIOS {
    */
   static removeEventListener(type: PushNotificationEventName, handler: Function) {
     invariant(
-      type === 'notification' || type === 'register' || type === 'registrationError' || 
+      type === 'notification' || type === 'register' || type === 'registrationError' ||
       type === 'registerAzureNotificationHub' || type === 'azureNotificationHubRegistrationError' || type === 'localNotification',
       'AzureNotificationHubIOS only supports `notification`, `register`, `registrationError`, `registerAzureNotificationHub`, `azureNotificationHubRegistrationError` and `localNotification` events'
     );
@@ -283,6 +283,26 @@ class AzureNotificationHubIOS {
     }
     listener.remove();
     _notifHandlers.delete(handler);
+  }
+
+   /**
+   * Removes all events related to registration. Do this in `componentWillUnmount` to prevent
+   * memory leaks
+   */
+  static removeAllRegistrationEvents() {
+    PushNotificationEmitter.removeAllListeners(NOTIF_REGISTER_EVENT);
+    PushNotificationEmitter.removeAllListeners(NOTIF_REGISTRATION_ERROR_EVENT);
+    PushNotificationEmitter.removeAllListeners(NOTIF_REGISTER_AZURE_HUB_EVENT);
+    PushNotificationEmitter.removeAllListeners(NOTIF_AZURE_HUB_REGISTRATION_ERROR_EVENT);
+  }
+
+  /**
+   * Removes all events related to notification. Do this in `componentWillUnmount` to prevent
+   * memory leaks
+   */
+  static removeAllNotifyEvents() {
+    PushNotificationEmitter.removeAllListeners(DEVICE_NOTIF_EVENT);
+    PushNotificationEmitter.removeAllListeners(DEVICE_LOCAL_NOTIF_EVENT);
   }
 
   /**
