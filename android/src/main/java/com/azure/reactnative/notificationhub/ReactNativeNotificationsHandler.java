@@ -137,7 +137,7 @@ public class ReactNativeNotificationsHandler extends NotificationsHandler {
                 notification.setSubText(subText);
             }
 
-            String numberString = bundle.getString("number");
+            String numberString = bundle.getString("badge");
             if (numberString != null) {
                 notification.setNumber(Integer.parseInt(numberString));
             }
