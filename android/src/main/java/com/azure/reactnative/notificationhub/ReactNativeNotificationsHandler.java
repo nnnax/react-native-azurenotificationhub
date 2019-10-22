@@ -304,6 +304,7 @@ public class ReactNativeNotificationsHandler extends NotificationsHandler {
         NotificationChannel channel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, name, importance);
         channel.enableLights(true);
         channel.enableVibration(true);
+        channel.setShowBadge(true);
         manager.createNotificationChannel(channel);
         channelCreated = true;
     }
