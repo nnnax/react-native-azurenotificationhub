@@ -150,7 +150,7 @@ public class ReactNativeNotificationsHandler extends NotificationsHandler {
             if (smallIcon != null) {
                 smallIconResId = res.getIdentifier(smallIcon, "mipmap", packageName);
             } else {
-                smallIconResId = res.getIdentifier("ic_notification", "mipmap", packageName);
+                smallIconResId = res.getIdentifier("logo", "mipmap", packageName);
             }
 
             if (smallIconResId == 0) {
@@ -164,7 +164,7 @@ public class ReactNativeNotificationsHandler extends NotificationsHandler {
             if (largeIcon != null) {
                 largeIconResId = res.getIdentifier(largeIcon, "mipmap", packageName);
             } else {
-                largeIconResId = res.getIdentifier("ic_launcher", "mipmap", packageName);
+                largeIconResId = res.getIdentifier("logo", "mipmap", packageName);
             }
 
             Bitmap largeIconBitmap = BitmapFactory.decodeResource(res, largeIconResId);
