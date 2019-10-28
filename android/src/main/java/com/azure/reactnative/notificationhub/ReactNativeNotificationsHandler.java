@@ -163,9 +163,10 @@ public class ReactNativeNotificationsHandler extends NotificationsHandler {
 
             if (largeIcon != null) {
                 largeIconResId = res.getIdentifier(largeIcon, "mipmap", packageName);
-            } else {
-                largeIconResId = res.getIdentifier("logo", "mipmap", packageName);
-            }
+            } 
+            // else {
+            //     largeIconResId = res.getIdentifier("logo", "mipmap", packageName);
+            // }
 
             Bitmap largeIconBitmap = BitmapFactory.decodeResource(res, largeIconResId);
 
