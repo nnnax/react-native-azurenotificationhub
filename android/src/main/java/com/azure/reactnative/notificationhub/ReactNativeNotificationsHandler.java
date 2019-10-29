@@ -171,9 +171,7 @@ public class ReactNativeNotificationsHandler extends NotificationsHandler {
                 notification.setLargeIcon(largeIconBitmap);
             }
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                notification.setColor(context.getResources().getColor(R.color.colorAccent));
-            }
+          
 
             notification.setSmallIcon(smallIconResId);
             String bigText = bundle.getString("bigText");
@@ -223,6 +221,8 @@ public class ReactNativeNotificationsHandler extends NotificationsHandler {
                 String color = bundle.getString("color");
                 if (color != null) {
                     notification.setColor(Color.parseColor(color));
+                }else{
+                    notification.setColor(res.getColor(android.R.color.colorAccent));
                 }
             }
 
