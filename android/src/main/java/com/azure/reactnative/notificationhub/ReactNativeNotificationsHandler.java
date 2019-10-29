@@ -150,7 +150,7 @@ public class ReactNativeNotificationsHandler extends NotificationsHandler {
             if (smallIcon != null) {
                 smallIconResId = res.getIdentifier(smallIcon, "mipmap", packageName);
             } else {
-                smallIconResId = res.getIdentifier("logo", "mipmap", packageName);
+                smallIconResId = res.getIdentifier("ic_notification", "mipmap", packageName);
             }
 
             if (smallIconResId == 0) {
