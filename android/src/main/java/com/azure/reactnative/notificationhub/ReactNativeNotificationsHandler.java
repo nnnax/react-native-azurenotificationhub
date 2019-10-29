@@ -164,14 +164,15 @@ public class ReactNativeNotificationsHandler extends NotificationsHandler {
             if (largeIcon != null) {
                 largeIconResId = res.getIdentifier(largeIcon, "mipmap", packageName);
             } 
-            // else {
-            //     largeIconResId = res.getIdentifier("logo", "mipmap", packageName);
-            // }
 
             Bitmap largeIconBitmap = BitmapFactory.decodeResource(res, largeIconResId);
 
             if (largeIconResId != 0 && (largeIcon != null || Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)) {
                 notification.setLargeIcon(largeIconBitmap);
+            }
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                notification.setColor(context.getResources().getColor(R.color.colorAccent));
             }
 
             notification.setSmallIcon(smallIconResId);
