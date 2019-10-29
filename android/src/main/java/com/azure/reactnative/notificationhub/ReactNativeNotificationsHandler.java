@@ -222,7 +222,7 @@ public class ReactNativeNotificationsHandler extends NotificationsHandler {
                 if (color != null) {
                     notification.setColor(Color.parseColor(color));
                 }else{
-                    notification.setColor(res.getColor(android.R.color.colorAccent));
+                    notification.setColor(res.getColor(R.color.colorAccent));
                 }
             }
 
